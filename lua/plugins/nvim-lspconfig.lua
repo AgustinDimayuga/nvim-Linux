@@ -101,7 +101,8 @@ return {
         },
         stylua = { enabled = false },
         lua_ls = {
-          -- mason = false, -- set to false if you don't want this server to be installed with mason
+
+          mason = false, -- set to false if you don't want this server to be installed with mason
           -- Use this to add any additional keymaps
           -- for specific lsp servers
           -- ---@type LazyKeysSpec[]
@@ -130,12 +131,6 @@ return {
               },
             },
           },
-        },
-        -- ADD THIS:
-        clangd = {
-          mason = false, -- use NixOS clangd, not mason
-          cmd = { "clangd" }, -- explicit but optional
-          -- you can add settings here later if you want
         },
       },
       -- you can do any additional lsp server setup here
