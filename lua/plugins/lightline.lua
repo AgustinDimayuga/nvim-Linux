@@ -26,11 +26,12 @@ return {
           gitbranch = "FugitiveHead", -- Added this line
         },
       }
-      function LightlineFilenameInLua(opts)
-        if vim.fn.expand("%:t") == "" then
+      function LightlineFilenameInLua()
+        local filename = vim.fn.expand("%:t") -- :t = tail (just filename)
+        if filename == "" then
           return "[No Name]"
         else
-          return vim.fn.getreg("%")
+          return filename
         end
       end
       -- https://github.com/itchyny/lightline.vim/issues/657
