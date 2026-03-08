@@ -4,12 +4,13 @@ return {
     lazy = false, -- also load at start since it's UI
     dependencies = {
       "tpope/vim-fugitive", -- Add this dependency for git branch
+      "dracula/vim"
     },
     config = function()
       -- no need to also show mode in cmd line when we have bar
       vim.o.showmode = false
       vim.g.lightline = {
-        colorscheme = "powerline", -- Add this line to change the colorscheme
+        colorscheme = "dracula", -- Add this line to change the colorscheme change to powerline for normal / gruvbox feel
         active = {
           left = {
             { "mode", "paste" },
