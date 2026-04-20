@@ -126,6 +126,17 @@ return {
           -- optional: common useful defaults
           -- cmd = { "clangd", "--background-index", "--clang-tidy" },
         },
+        nil_ls = {
+          mason = false,
+          cmd = { "nil" },
+          settings = {
+            ["nil"] = {
+              formatting = {
+                command = { "nixpkgs-fmt" },
+              },
+            },
+          },
+        },
       },
 
       ---@type table<string, fun(server:string, opts: vim.lsp.Config):boolean?>
