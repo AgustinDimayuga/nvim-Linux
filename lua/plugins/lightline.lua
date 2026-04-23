@@ -1,20 +1,41 @@
 return {
   {
     "itchyny/lightline.vim",
-    lazy = false, -- also load at start since it's UI
+    lazy = false,
     dependencies = {
-      "tpope/vim-fugitive", -- Add this dependency for git branch
-      "dracula/vim"
+      "tpope/vim-fugitive",
+      "dracula/vim",
     },
     config = function()
-      -- no need to also show mode in cmd line when we have bar
       vim.o.showmode = false
+
+      function _G.LightlineFilenameInLua()
+        local filename = vim.fn.expand("%:t")
+        if filename == "" then
+          return "[No Name]"
+        end
+        return filename
+      end
+
+      function _G.LightlineGitBranchInLua()
+        local branch = vim.fn.FugitiveHead()
+        if branch == nil or branch == "" then
+          return ""
+        end
+
+        -- pick one icon your font supports
+        return " " .. branch
+        -- alternatives:
+        -- return " " .. branch
+        -- return " " .. branch
+      end
+
       vim.g.lightline = {
-        colorscheme = "dracula", -- Add this line to change the colorscheme change to powerline for normal / gruvbox feel
+        colorscheme = "dracula",
         active = {
           left = {
-            { "mode", "paste" },
-            { "gitbranch", "readonly", "filename", "modified" }, -- Added gitbranch here
+            { "mode",      "paste" },
+            { "gitbranch", "readonly", "filename", "modified" },
           },
           right = {
             { "lineinfo" },
@@ -23,27 +44,20 @@ return {
           },
         },
         component_function = {
-          filename = "LightlineFilename",
-          gitbranch = "FugitiveHead", -- Added this line
+          filename = "g:LightlineFilename",
+          gitbranch = "g:LightlineGitBranch",
         },
       }
-      function LightlineFilenameInLua()
-        local filename = vim.fn.expand("%:t") -- :t = tail (just filename)
-        if filename == "" then
-          return "[No Name]"
-        else
-          return filename
-        end
-      end
-      -- https://github.com/itchyny/lightline.vim/issues/657
-      vim.api.nvim_exec(
-        [[
-				function! g:LightlineFilename()
-					return v:lua.LightlineFilenameInLua()
-				endfunction
-				]],
-        true
-      )
+
+      vim.cmd([[
+        function! g:LightlineFilename()
+          return v:lua.LightlineFilenameInLua()
+        endfunction
+
+        function! g:LightlineGitBranch()
+          return v:lua.LightlineGitBranchInLua()
+        endfunction
+      ]])
     end,
   },
 }
