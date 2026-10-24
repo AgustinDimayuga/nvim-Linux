@@ -7,6 +7,7 @@ return {
   opts_extend = { "ensure_installed" },
   opts = {
     ensure_installed = {
+      PATH = "append",
       "shfmt",
     },
   },

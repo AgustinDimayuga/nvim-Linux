@@ -10,5 +10,8 @@ return {
     global_keymaps = true,
     global_keymaps_prefix = "<leader>R",
     kulala_keymaps_prefix = "",
+    treesitter = {
+      cli_path = "/run/current-system/sw/bin/tree-sitter",
+    },
   },
 }

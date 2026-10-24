@@ -1,4 +1,9 @@
-{
+local enabled = false -- flip to true to use gruvbox (and flip dracula's to false)
+if not enabled then
+  return {}
+end
+
+return {
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,

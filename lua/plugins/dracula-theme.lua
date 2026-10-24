@@ -1,3 +1,8 @@
+local enabled = true -- flip to false to use gruvbox (and flip gruvbox's to true)
+if not enabled then
+  return {}
+end
+
 return {
   {
     "Mofiqul/dracula.nvim",
@@ -38,7 +43,6 @@ return {
           return {
             CmpGhostText = { fg = colors.comment, italic = true },
             BlinkCmpGhostText = { fg = colors.white, italic = true }, -- change this for autocompletion color
-            
           }
         end,
       })

@@ -13,7 +13,6 @@ return {
         null_ls.builtins.formatting.black, -- python
 
         null_ls.builtins.formatting.prettier, -- javascript html md
-        null_ls.builtins.formatting.nixpkgs_fmt,
       },
     })
   end,
